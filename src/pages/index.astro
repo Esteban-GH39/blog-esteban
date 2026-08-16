@@ -4,32 +4,33 @@ import PostCard from "../components/PostCard.astro";
 import { client } from "../lib/content-island";
 
 interface Post {
-  title: string;
-  description: string;
-  date: string;
-  category: string;
-  slug: string;
-  content: string;
+	id: string;
+	title: string;
+	description: string;
+	date: string;
+	category: string;
+	slug: string;
+	content: string;
 }
 
-const posts = await client.getContentList<Post>({ modelId: "Post" });
+const posts = await client.getContentList<Post>({ contentType: "Post" });
 const ultimosPosts = posts
-  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
-  .slice(0, 3);
+	.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+	.slice(0, 3);
 ---
 
 <Layout title="Inicio">
-  <h1>Blog de Esteban Girón Herrera</h1>
-  <p>Notas de aprendizaje y devlogs de mis proyectos, como TableMaster.</p>
+	<h1>Blog de Esteban Girón Herrera</h1>
+	<p>Notas de aprendizaje y devlogs de mis proyectos, como TableMaster.</p>
 
-  {ultimosPosts.map((post) => (
-    <PostCard
-      title={post.title}
-      description={post.description}
-      date={new Date(post.date)}
-      slug={post.slug}
-    />
-  ))}
+	{ultimosPosts.map((post) => (
+		<PostCard
+		title={post.title}
+		description={post.description}
+		date={new Date(post.date)}
+		slug={post.slug}
+		/>
+	))}
 
-  <a href="/blog">Ver todos los posts →</a>
+	<a href="/blog">Ver todos los posts →</a>
 </Layout>
