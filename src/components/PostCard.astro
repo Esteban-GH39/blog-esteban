@@ -1,0 +1,28 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    date: Date;
+    slug: string;
+}
+
+const { title, description, date, slug } = Astro.props;
+---
+
+<a href={`/blog/${slug}`} class="post-card">
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <time>{date.toLocaleDateString("es-ES")}</time>
+</a>
+
+<style>
+    .post-card {
+        display: block;
+        padding: 1rem;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>

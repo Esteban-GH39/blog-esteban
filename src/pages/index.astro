@@ -1,11 +1,20 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// FENCE: Es lo que corre en el server
+import PostCard from "../components/PostCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const postsDeEjemplo = [
+  	{ title: "Construyendo TableMaster", description: "Cómo diseñé la arquitectura", date: new Date(), slug: "construyendo-tablemaster" },
+  	{ title: "Mi primer post", description: "Bienvenida al blog", date: new Date(), slug: "mi-primer-post" },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="es">
+  	<head>
+    	<meta charset="utf-8" />
+    	<title>Blog de Esteban</title>
+  	</head>
+  	<body>
+   		<h1>Blog de Esteban</h1>
+    	{postsDeEjemplo.map((post) => <PostCard {...post} />)}
+  	</body>
+</html>
