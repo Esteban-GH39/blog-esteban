@@ -1,20 +1,35 @@
 ---
-// FENCE: Es lo que corre en el server
+import Layout from "../layouts/Layout.astro";
 import PostCard from "../components/PostCard.astro";
+import { client } from "../lib/content-island";
 
-const postsDeEjemplo = [
-  	{ title: "Construyendo TableMaster", description: "Cómo diseñé la arquitectura", date: new Date(), slug: "construyendo-tablemaster" },
-  	{ title: "Mi primer post", description: "Bienvenida al blog", date: new Date(), slug: "mi-primer-post" },
-];
+interface Post {
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  slug: string;
+  content: string;
+}
+
+const posts = await client.getContentList<Post>({ modelId: "Post" });
+const ultimosPosts = posts
+  .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+  .slice(0, 3);
 ---
 
-<html lang="es">
-  	<head>
-    	<meta charset="utf-8" />
-    	<title>Blog de Esteban</title>
-  	</head>
-  	<body>
-   		<h1>Blog de Esteban</h1>
-    	{postsDeEjemplo.map((post) => <PostCard {...post} />)}
-  	</body>
-</html>
+<Layout title="Inicio">
+  <h1>Blog de Esteban Girón Herrera</h1>
+  <p>Notas de aprendizaje y devlogs de mis proyectos, como TableMaster.</p>
+
+  {ultimosPosts.map((post) => (
+    <PostCard
+      title={post.title}
+      description={post.description}
+      date={new Date(post.date)}
+      slug={post.slug}
+    />
+  ))}
+
+  <a href="/blog">Ver todos los posts →</a>
+</Layout>

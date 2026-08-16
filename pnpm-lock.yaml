@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@content-island/api-client':
+        specifier: ^0.25.0
+        version: 0.25.0
       astro:
         specifier: ^7.2.2
         version: 7.2.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)
@@ -170,6 +173,10 @@ packages:
   '@clack/prompts@1.7.0':
     resolution: {integrity: sha512-y7/yvZ2TPAnR9+jnc00klvNNLkJiXFFrQA/hlLCcxA9a2A4zQIOimyFQ9XfwYKiGD1fb5GY8vbKIIgO8d5Tb2A==}
     engines: {node: '>= 20.12.0'}
+
+  '@content-island/api-client@0.25.0':
+    resolution: {integrity: sha512-USApf36KWQnJxJAOu3CPIPOM4wkdxNHPdtheNHnUKSht5Li1gMIM3vkL0adD7Aq0QUjm3xr8E9YqoToZJono2g==}
+    hasBin: true
 
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
@@ -1568,6 +1575,8 @@ snapshots:
       fast-string-width: 3.0.2
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
+
+  '@content-island/api-client@0.25.0': {}
 
   '@emnapi/core@1.11.1':
     dependencies:
