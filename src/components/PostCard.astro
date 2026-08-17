@@ -4,25 +4,24 @@ interface Props {
     description: string;
     date: Date;
     slug: string;
+    category: string;
 }
 
-const { title, description, date, slug } = Astro.props;
+const { title, description, date, slug, category } = Astro.props;
+const categoryStyles: Record<string, string> = {
+    devlog: "bg-violet-500/10 text-violet-400 border-violet-500/30",
+	notas: "bg-sky-500/10 text-sky-400 border-sky-500/30",
+};
 ---
 
-<a href={`/blog/${slug}`} class="post-card">
-    <h2>{title}</h2>
-    <p>{description}</p>
-    <time>{date.toLocaleDateString("es-ES")}</time>
+<a	
+    href={`/blog/${slug}`}
+	class="block p-6 rounded-xl border border-neutral-800 bg-neutral-900 hover:border-violet-500 transition-colors mb-4"
+>
+	<span class={`inline-block text-xs font-medium px-2 py-1 rounded-full border mb-3 ${categoryStyles[category] ?? "bg-neutral-800 text-neutral-400 border-neutral-700"}`}>
+		{category}
+	</span>
+	<h2 class="text-xl font-semibold mb-2">{title}</h2>
+	<p class="text-neutral-400 mb-3">{description}</p>
+	<time class="text-sm text-neutral-500">{date.toLocaleDateString("es-ES")}</time>
 </a>
-
-<style>
-    .post-card {
-        display: block;
-        padding: 1rem;
-        border: 1px solid #333;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        text-decoration: none;
-        color: inherit;
-    }
-</style>
