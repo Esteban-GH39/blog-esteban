@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { client } from "../../lib/content-island";
+
+interface Post {
+	id: string;
+	title: string;
+	description: string;
+	date: string;
+	category: string;
+	slug: string;
+	content: string;
+}
+
+const posts = await client.getContentList<Post>({ contentType: "Post" });
+const postsOrdenados = posts.sort(
+	(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
+);
+---
+
+<Layout title="Blog">
+	<h1>Todos los posts</h1>
+	{postsOrdenados.map((post) => (
+		<PostCard
+		title={post.title}
+		description={post.description}
+		date={new Date(post.date)}
+		slug={post.slug}
+		/>
+	))}
+</Layout>

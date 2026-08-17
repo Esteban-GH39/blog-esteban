@@ -1,24 +1,34 @@
 ---
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
+import { client } from "../../lib/content-island";
+
+interface Post {
+    id: string;
+	title: string;
+	description: string;
+	date: string;
+	category: string;
+	slug: string;
+	content: string;
+}
 
 export async function getStaticPaths() {
-    const posts = await getCollection("blog");
-    return posts.map((post: CollectionEntry<"blog">) => ({
+    const posts = await client.getContentList<Post>({ contentType: "Post" });
+    return posts.map((post) => ({
         params: { slug: post.slug },
         props: { post },
     }));
 }
 
-const { post } = Astro.props as { post: CollectionEntry<"blog"> };
-const { Content } = await render(post);
+const { post } = Astro.props as { post: Post };
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.title}>
     <article>
-        <h1>{post.data.title}</h1>
-        <time>{post.data.date.toLocaleDateString("es-ES")}</time>
-        <p><em>{post.data.description}</em></p>
-        <Content />
+        <h1>{post.title}</h1>
+        <time>{new Date(post.date).toLocaleDateString("es-ES")}</time>
+        <p><em>{post.description}</em></p>
+        <div set:html={post.content} />
     </article>
 </Layout>
