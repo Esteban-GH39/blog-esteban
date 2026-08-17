@@ -25,10 +25,10 @@ const { post } = Astro.props as { post: Post };
 ---
 
 <Layout title={post.title}>
-    <article>
-        <h1>{post.title}</h1>
-        <time>{new Date(post.date).toLocaleDateString("es-ES")}</time>
-        <p><em>{post.description}</em></p>
-        <div set:html={post.content} />
-    </article>
+	<article>
+		<h1 class="text-4xl font-bold mb-2">{post.title}</h1>
+		<time class="text-sm text-neutral-500">{new Date(post.date).toLocaleDateString("es-ES")}</time>
+		<p class="text-neutral-400 italic mt-4 mb-8">{post.description}</p>
+		<div class="prose prose-invert max-w-none" set:html={post.content} />
+	</article>
 </Layout>
