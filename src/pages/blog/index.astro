@@ -11,6 +11,10 @@ interface Post {
 	category: string;
 	slug: string;
 	content: string;
+	image: {
+		name: string;
+		url: string;
+	}
 }
 
 const posts = await client.getContentList<Post>({ contentType: "Post" });

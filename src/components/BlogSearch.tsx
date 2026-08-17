@@ -7,6 +7,10 @@ interface Post {
     date: string;
     slug: string;
     category: string;
+    image: {
+		name: string;
+		url: string;
+	}
 }
 
 interface Props {
@@ -36,6 +40,9 @@ export default function BlogSearch({ posts }: Props) {
             href={`/blog/${post.slug}`}
             className="block p-6 rounded-xl border border-neutral-800 bg-neutral-900 hover:border-violet-500 transition-colors mb-4"
             >
+            {post.image?.url && (
+                <img src={post.image.url} alt={post.title} className="w-full h-48 object-cover rounded-t-xl -m-6 mb-4" style={{ width: "calc(100% + 3rem)" }} />
+            )}    
             <span className={`inline-block text-xs font-medium px-2 py-1 rounded-full border mb-3 ${
                 post.category === "devlog"
                 ? "bg-violet-500/10 text-violet-400 border-violet-500/30"

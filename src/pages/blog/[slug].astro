@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import { client } from "../../lib/content-island";
+import type { string } from "astro:schema";
 
 interface Post {
     id: string;
@@ -11,6 +12,10 @@ interface Post {
 	category: string;
 	slug: string;
 	content: string;
+	image: {
+		name: string;
+		url: string;
+	}
 }
 
 export async function getStaticPaths() {
@@ -26,6 +31,9 @@ const { post } = Astro.props as { post: Post };
 
 <Layout title={post.title}>
 	<article>
+		{post.image?.url && (
+			<img src={post.image.url} alt={post.title} class="w-full h-64 object-cover rounded-xl mb-8" />
+		)}
 		<h1 class="text-4xl font-bold mb-2">{post.title}</h1>
 		<time class="text-sm text-neutral-500">{new Date(post.date).toLocaleDateString("es-ES")}</time>
 		<p class="text-neutral-400 italic mt-4 mb-8">{post.description}</p>
