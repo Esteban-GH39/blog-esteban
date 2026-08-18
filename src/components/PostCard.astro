@@ -13,14 +13,14 @@ interface Props {
 
 const { title, description, date, slug, category, image } = Astro.props;
 const categoryStyles: Record<string, string> = {
-    devlog: "bg-violet-500/10 text-violet-400 border-violet-500/30",
+    devlog: "bg-accent/10 text-accent-light border-accent/30",
 	notas: "bg-sky-500/10 text-sky-400 border-sky-500/30",
 };
 ---
 
 <a	
     href={`/blog/${slug}`}
-	class="block p-6 rounded-xl border border-neutral-800 bg-neutral-900 hover:border-violet-500 transition-colors"
+	class="block p-6 rounded-xl border border-border bg-surface hover:border-accent transition-colors"
 >
 	{image?.url && (
 		<img src={image.url} alt={title} class="w-full h-48 object-cover rounded-lg mb-4" />
@@ -28,7 +28,7 @@ const categoryStyles: Record<string, string> = {
 	<span class={`inline-block text-xs font-medium px-2 py-1 rounded-full border mb-3 ${categoryStyles[category] ?? "bg-neutral-800 text-neutral-400 border-neutral-700"}`}>
 		{category}
 	</span>
-	<h2 class="text-xl font-semibold mb-2">{title}</h2>
-	<p class="text-neutral-400 mb-3">{description}</p>
-	<time class="text-sm text-neutral-500">{date.toLocaleDateString("es-ES")}</time>
+	<h2 class="font-display text-xl font-semibold mb-2">{title}</h2>
+	<p class="text-ink-muted mb-3">{description}</p>
+	<time class="text-sm text-ink-faint">{date.toLocaleDateString("es-ES")}</time>
 </a>

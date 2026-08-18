@@ -1,2 +1,21 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
 @plugin "@tailwindcss/typography";
+
+@theme {
+	--color-base: #0a0a0f;
+	--color-elevated: #13111c;
+	--color-surface: #1a1725;
+	--color-border: #2a2438;
+
+	--color-accent: #a855f7;
+	--color-accent-light: #c084fc;
+
+	--color-ink: #f8fafc;
+	--color-ink-muted: #a1a1aa;
+	--color-ink-faint: #71717a;
+
+	--font-display: "Space Grotesk", sans-serif;
+	--font-body: "Inter", sans-serif;
+}

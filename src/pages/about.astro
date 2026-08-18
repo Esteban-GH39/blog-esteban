@@ -1,11 +1,50 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
+
 <Layout title="Sobre mí">
-    <h1>Sobre mí</h1>
-    <p>
-        Soy Esteban Girón Herrera, estudiante de Ingeniería de Sistemas y 
-		desarrollador Full Stack enfocado en frontend. Este blog es mi espacio 
-		para documentar lo que aprendo y el desarrollo de mis proyectos.
-    </p>
+	<img
+		src="/banner-esteban.jpg"
+		alt="Esteban Girón Herrera — Systems Engineer, Full Stack Developer"
+		class="w-full rounded-xl border border-border mb-10 object-cover"
+	/>
+
+	<div class="grid gap-10 md:grid-cols-[240px_1fr] md:items-start">
+		<img
+			src="/esteban-foto.png"
+			alt="Esteban Girón Herrera"
+			class="w-40 md:w-full aspect-square rounded-2xl border border-border object-cover mx-auto md:mx-0"
+		/>
+
+		<div>
+			<h1 class="font-display text-4xl font-bold mb-6">Sobre mí</h1>
+
+			<div class="space-y-4 text-ink-muted">
+				<p>
+					Soy estudiante de octavo semestre de Ingeniería de Sistemas, enfocado
+					en desarrollo Full Stack con énfasis en Frontend. Me interesa entender
+					el ciclo completo de una aplicación: desde el diseño de la interfaz
+					hasta la arquitectura del servidor, el modelado de datos y el despliegue.
+				</p>
+				<p>
+					Trabajo principalmente con <span class="text-ink">React</span> en el
+					frontend, y <span class="text-ink">Node.js, Express y PostgreSQL</span>
+					en el backend, aplicando arquitectura por capas, documentación de APIs
+					con Swagger y buenas prácticas de Clean Code. Mi proyecto más
+					representativo es <span class="text-accent-light">TableMaster</span>,
+					una plataforma para que clubes de tenis de mesa gestionen torneos,
+					partidos amistosos, estadísticas y rankings de jugadores.
+				</p>
+				<p>
+					Además de programar, disfruto documentar lo que voy aprendiendo. Este
+					blog es justamente eso: mis notas de estudio y el proceso detrás de
+					mis proyectos.
+				</p>
+				<p>
+					Busco seguir creciendo, aportando una base técnica sólida a un equipo
+					de desarrollo real.
+				</p>
+			</div>
+		</div>
+	</div>
 </Layout>
