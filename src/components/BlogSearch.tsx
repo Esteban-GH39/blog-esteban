@@ -17,12 +17,17 @@ interface Props {
     posts: Post[];
 }
 
+const CATEGORIAS = ["todas", "devlog", "notas"];
+
 export default function BlogSearch({ posts }: Props) {
     const [query, setQuery] = useState("");
+    const [categoriaActiva, setCategoriaActiva] = useState("todas");
 
-    const postsFiltrados = posts.filter((post) =>
-        post.title.toLowerCase().includes(query.toLowerCase())
-    );
+    const postsFiltrados = posts.filter((post) => {
+        const coincideTitulo = post.title.toLowerCase().includes(query.toLowerCase());
+        const coincideCategoria = categoriaActiva === "todas" || post.category === categoriaActiva;
+        return coincideTitulo && coincideCategoria;
+    });
 
     return (
         <div>
@@ -31,8 +36,24 @@ export default function BlogSearch({ posts }: Props) {
             placeholder="Buscar posts..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full p-3 rounded-lg border border-border bg-surface text-ink mb-8 focus:outline-none focus:border-accent"
+            className="w-full p-3 rounded-lg border border-border bg-surface text-ink mb-4 focus:outline-none focus:border-accent"
         />
+
+        <div className="flex gap-2 mb-8">
+            {CATEGORIAS.map((cat) => (
+                <button
+                    key={cat}
+                    onClick={() => setCategoriaActiva(cat)}
+                    className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                        categoriaActiva === cat
+                            ? "bg-accent text-white border-accent"
+                            : "bg-surface text-ink-muted border-border hover:border-accent"
+                    }`}
+                >
+                    {cat}
+                </button>
+            ))}
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {postsFiltrados.map((post) => (
