@@ -27,16 +27,18 @@ const ultimosPosts = posts
 	<h1 class="text-4xl font-bold mb-3">Blog de Esteban Girón Herrera</h1>
 	<p class="text-neutral-400 mb-10">Notas de aprendizaje y devlogs de mis proyectos, como TableMaster.</p>
 
-	{ultimosPosts.map((post) => (
-		<PostCard
-		title={post.title}
-		description={post.description}
-		date={new Date(post.date)}
-		slug={post.slug}
-		category={post.category}
-		image={post.image}
-		/>
-	))}
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+		{ultimosPosts.map((post) => (
+			<PostCard
+			title={post.title}
+			description={post.description}
+			date={new Date(post.date)}
+			slug={post.slug}
+			category={post.category}
+			image={post.image}
+			/>
+		))}
+	</div>
 
 	<a href="/blog" class="text-violet-400 hover:text-violet-300 transition-colors">Ver todos los posts →</a>
 </Layout>
