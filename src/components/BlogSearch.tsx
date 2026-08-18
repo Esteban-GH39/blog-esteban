@@ -39,15 +39,15 @@ export default function BlogSearch({ posts }: Props) {
             className="w-full p-3 rounded-lg border border-border bg-surface text-ink mb-4 focus:outline-none focus:border-accent"
         />
 
-        <div className="flex gap-2 mb-8">
+        <div className="flex flex-wrap gap-3 mb-10">
             {CATEGORIAS.map((cat) => (
                 <button
                     key={cat}
                     onClick={() => setCategoriaActiva(cat)}
-                    className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                    className={`px-5 py-2 rounded-full text-sm font-medium border capitalize transition-all ${
                         categoriaActiva === cat
-                            ? "bg-accent text-white border-accent"
-                            : "bg-surface text-ink-muted border-border hover:border-accent"
+                            ? "bg-accent text-white border-accent shadow-[0_0_20px_-5px_var(--color-accent)]"
+                            : "bg-surface text-ink-muted border-border hover:border-accent hover:text-ink"
                     }`}
                 >
                     {cat}
